@@ -1,0 +1,22 @@
+# Dependencies
+node_modules/
+
+# Original reference material (large files, not part of the website)
+Ref Docs/
+
+# Build/utility scripts
+compress-images.js
+build-assets.js
+png-to-jpg.js
+png-to-jpg-map.json
+
+# Vercel local config
+.vercel
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+*.swp
