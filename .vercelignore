@@ -4,5 +4,5 @@ compress-images.js
 build-assets.js
 package.json
 package-lock.json
-css
-js
+/css
+/js
