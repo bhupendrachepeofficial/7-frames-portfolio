@@ -537,8 +537,8 @@ input, textarea { font-family: inherit; }
 }
 .portrait-frame img {
   width: 100%;
-  height: 560px;
-  object-fit: cover;
+  height: auto;
+  object-fit: contain;
   display: block;
 }
 .portrait-gold-border {
@@ -1310,7 +1310,6 @@ input, textarea { font-family: inherit; }
   display: block;
   transition: transform 0.7s ease;
 }
-.gallery-item:nth-child(3n+1) img { height: 360px; }
 .gallery-item:hover { border-color: var(--gold); }
 .gallery-item:hover img { transform: scale(1.06); }
 .gallery-item-overlay {
@@ -1433,7 +1432,6 @@ input, textarea { font-family: inherit; }
   .testimonial-card { padding: 32px 24px; }
   .gallery-grid { grid-template-columns: 1fr; }
   .gallery-item img { height: 240px !important; }
-  .gallery-item:nth-child(3n+1) img { height: 280px !important; }
   .lightbox-prev { left: 8px; }
   .lightbox-next { right: 8px; }
 }

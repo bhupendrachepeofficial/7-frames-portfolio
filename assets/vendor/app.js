@@ -1,16 +1,16 @@
-/* ============================================================
-   7 FRAMES â€” MAIN JS
+﻿/* ============================================================
+   7 FRAMES — MAIN JS
    Gallery data, hero slideshow, modal, lightbox, cursor, particles
    ============================================================ */
 
 'use strict';
 
-/* â”€â”€ Gallery Data â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* ── Gallery Data ───────────────────────────────────────────── */
 const GALLERIES = {
   wildlife: {
     cat:    'Wildlife',
     title:  'Into the Wild',
-    intro:  'Raw, untamed moments captured in their natural habitat. A visual journey through the wilderness â€” from the forests of Maharashtra to the wild heartland of India.',
+    intro:  'Raw, untamed moments captured in their natural habitat. A visual journey through the wilderness — from the forests of Maharashtra to the wild heartland of India.',
     images: [
       { src: 'assets/images/wildlife/wildlife-1.jpg',  alt: 'Wildlife 01' },
       { src: 'assets/images/wildlife/wildlife-2.jpg',  alt: 'Wildlife 02' },
@@ -32,7 +32,7 @@ const GALLERIES = {
   product: {
     cat:    'Product',
     title:  'Object Perfection',
-    intro:  'Commercial-grade product photography that transforms everyday objects into objects of desire. Studio precision meets creative storytelling â€” crafted for brands that demand excellence.',
+    intro:  'Commercial-grade product photography that transforms everyday objects into objects of desire. Studio precision meets creative storytelling — crafted for brands that demand excellence.',
     images: [
       { src: 'assets/images/product/product-1.jpg',  alt: 'Product 01' },
       { src: 'assets/images/product/product-2.jpg',  alt: 'Product 02' },
@@ -79,7 +79,7 @@ const GALLERIES = {
   automobile: {
     cat:    'Automobile',
     title:  'Speed & Steel',
-    intro:  'Automotive photography that captures the soul of the machine â€” its lines, power, and precision. Where engineering excellence meets visual storytelling.',
+    intro:  'Automotive photography that captures the soul of the machine — its lines, power, and precision. Where engineering excellence meets visual storytelling.',
     images: [
       { src: 'assets/images/automobile/automobile-1.jpg', alt: 'Automobile 01' },
       { src: 'assets/images/automobile/automobile-2.jpg', alt: 'Automobile 02' },
@@ -90,11 +90,11 @@ const GALLERIES = {
   }
 };
 
-/* â”€â”€ Active Gallery State â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* ── Active Gallery State ───────────────────────────────────── */
 let activeGalleryImages = [];
 let lightboxIndex       = 0;
 
-/* â”€â”€ DOM References â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* ── DOM References ─────────────────────────────────────────── */
 const loader         = document.getElementById('loader');
 const galleryModal   = document.getElementById('galleryModal');
 const galleryBackdrop= document.getElementById('galleryModalBackdrop');
@@ -112,7 +112,7 @@ const lightboxCounter= document.getElementById('lightboxCounter');
 const cursorDot      = document.getElementById('cursorDot');
 const cursorRing     = document.getElementById('cursorRing');
 
-/* â”€â”€ Loading Screen â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* ── Loading Screen ─────────────────────────────────────────── */
 function initLoader() {
   const logo    = loader.querySelector('.loader-logo');
   const barFill = loader.querySelector('.loader-bar-fill');
@@ -131,7 +131,7 @@ function initLoader() {
   });
 }
 
-/* â”€â”€ Hero Slideshow â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* ── Hero Slideshow ─────────────────────────────────────────── */
 function initHeroSlideshow() {
   const slides     = document.querySelectorAll('.hero-slide');
   const indicators = document.getElementById('slideIndicators');
@@ -160,7 +160,7 @@ function initHeroSlideshow() {
   timer = setInterval(advance, 5000);
 }
 
-/* â”€â”€ Mouse Glow & Custom Cursor â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* ── Mouse Glow & Custom Cursor ─────────────────────────────── */
 function initCursor() {
   const mouseGlow = document.getElementById('mouseGlow');
   let dotX = 0, dotY = 0, ringX = 0, ringY = 0;
@@ -193,7 +193,7 @@ function initCursor() {
   });
 }
 
-/* â”€â”€ Particle Canvas â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* ── Particle Canvas ────────────────────────────────────────── */
 function initParticles() {
   const canvas = document.getElementById('particleCanvas');
   if (!canvas) return;
@@ -242,7 +242,7 @@ function initParticles() {
   tick();
 }
 
-/* â”€â”€ Navigation â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* ── Navigation ─────────────────────────────────────────────── */
 function initNav() {
   const nav        = document.getElementById('mainNav');
   const hamburger  = document.getElementById('hamburger');
@@ -286,7 +286,7 @@ function initNav() {
   sections.forEach(s => observer.observe(s));
 }
 
-/* â”€â”€ Animated Counters â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* ── Animated Counters ──────────────────────────────────────── */
 function initCounters() {
   const counters = document.querySelectorAll('.counter-number');
   let done = false;
@@ -314,7 +314,7 @@ function initCounters() {
   if (grid) observer.observe(grid);
 }
 
-/* â”€â”€ Testimonial Carousel â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* ── Testimonial Carousel ───────────────────────────────────── */
 function initTestimonials() {
   const track  = document.getElementById('testimonialTrack');
   const cards  = track.querySelectorAll('.testimonial-card');
@@ -342,7 +342,7 @@ function initTestimonials() {
   resetTimer();
 }
 
-/* â”€â”€ Featured Carousel Drag â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* ── Featured Carousel Drag ─────────────────────────────────── */
 function initFeaturedCarousel() {
   const carousel = document.getElementById('featuredCarousel');
   const bar      = document.getElementById('featuredProgressBar');
@@ -371,7 +371,7 @@ function initFeaturedCarousel() {
   }, { passive: true });
 }
 
-/* â”€â”€ Gallery Modal â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* ── Gallery Modal ──────────────────────────────────────────── */
 window.openGallery = function(category) {
   const data = GALLERIES[category];
   if (!data) return;
@@ -429,7 +429,7 @@ document.addEventListener('keydown', e => {
   }
 });
 
-/* â”€â”€ Lightbox â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* ── Lightbox ───────────────────────────────────────────────── */
 function openLightbox(idx) {
   lightboxIndex = idx;
   renderLightbox();
@@ -466,7 +466,7 @@ document.addEventListener('keydown', e => {
   if (e.key === 'ArrowRight') lightboxNext.click();
 });
 
-/* â”€â”€ Touch swipe for lightbox â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* ── Touch swipe for lightbox ───────────────────────────────── */
 let touchStartX = 0;
 lightbox.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
 lightbox.addEventListener('touchend',   e => {
@@ -477,7 +477,7 @@ lightbox.addEventListener('touchend',   e => {
   }
 });
 
-/* â”€â”€ Contact form mailto fallback â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* ── Contact form mailto fallback ───────────────────────────── */
 function initContactForm() {
   const form = document.getElementById('contactForm');
   if (!form) return;
@@ -492,7 +492,7 @@ function initContactForm() {
   });
 }
 
-/* â”€â”€ Smooth anchor scroll â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* ── Smooth anchor scroll ───────────────────────────────────── */
 function initSmoothAnchors() {
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', e => {
@@ -504,7 +504,7 @@ function initSmoothAnchors() {
   });
 }
 
-/* â”€â”€ Boot â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* ── Boot ───────────────────────────────────────────────────── */
 /* -- Portfolio Filters ------------------------------------------------ */
 function initPortfolioFilters() {
   const btns  = document.querySelectorAll('.filter-btn');
@@ -546,18 +546,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 /* ============================================================
-   7 FRAMES â€” GSAP ANIMATIONS & LENIS SMOOTH SCROLL
+   7 FRAMES — GSAP ANIMATIONS & LENIS SMOOTH SCROLL
    ============================================================ */
 
 'use strict';
 
-/* â”€â”€ Wait for GSAP + Lenis to load â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* ── Wait for GSAP + Lenis to load ─────────────────────────── */
 document.addEventListener('DOMContentLoaded', () => {
   if (typeof gsap === 'undefined') return;
 
   gsap.registerPlugin(ScrollTrigger);
 
-  /* â”€â”€ Lenis Smooth Scroll â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+  /* ── Lenis Smooth Scroll ──────────────────────────────────── */
   let lenis;
   if (typeof Lenis !== 'undefined') {
     lenis = new Lenis({
@@ -573,7 +573,7 @@ document.addEventListener('DOMContentLoaded', () => {
     lenis.on('scroll', ScrollTrigger.update);
   }
 
-  /* â”€â”€ Hero content reveal (after loader) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+  /* ── Hero content reveal (after loader) ──────────────────── */
   const heroTl = gsap.timeline({ delay: 2.0 });
 
   heroTl
@@ -588,7 +588,7 @@ document.addEventListener('DOMContentLoaded', () => {
     .to('.hero-subtitle', { opacity: 1, duration: 0.9, ease: 'power2.out' }, '-=0.6')
     .to('.hero-ctas',     { opacity: 1, duration: 0.9, ease: 'power2.out' }, '-=0.5');
 
-  /* â”€â”€ Scroll Reveal â€” generic .reveal-up elements â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+  /* ── Scroll Reveal — generic .reveal-up elements ─────────── */
   ScrollTrigger.batch('.reveal-up', {
     start:  'top 88%',
     once:   true,
@@ -616,14 +616,14 @@ document.addEventListener('DOMContentLoaded', () => {
     },
   });
 
-  /* â”€â”€ Navigation background on scroll â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+  /* ── Navigation background on scroll ─────────────────────── */
   ScrollTrigger.create({
     start:      'top -80',
     onEnter:    () => document.getElementById('mainNav').classList.add('scrolled'),
     onLeaveBack:() => document.getElementById('mainNav').classList.remove('scrolled'),
   });
 
-  /* â”€â”€ About portrait parallax â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+  /* ── About portrait parallax ──────────────────────────────── */
   gsap.to('.portrait-frame', {
     yPercent: -12,
     ease:     'none',
@@ -635,7 +635,7 @@ document.addEventListener('DOMContentLoaded', () => {
     },
   });
 
-  /* â”€â”€ Portfolio cards stagger â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+  /* ── Portfolio cards stagger ──────────────────────────────── */
   gsap.from('.portfolio-card', {
     opacity:  0,
     y:        60,
@@ -649,7 +649,7 @@ document.addEventListener('DOMContentLoaded', () => {
     },
   });
 
-  /* â”€â”€ Service cards stagger â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+  /* ── Service cards stagger ────────────────────────────────── */
   gsap.from('.service-card', {
     opacity:  0,
     y:        50,
@@ -663,7 +663,7 @@ document.addEventListener('DOMContentLoaded', () => {
     },
   });
 
-  /* â”€â”€ Featured section heading parallax â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+  /* ── Featured section heading parallax ───────────────────── */
   gsap.from('.featured-section .section-heading', {
     x:       -60,
     opacity: 0,
@@ -676,9 +676,9 @@ document.addEventListener('DOMContentLoaded', () => {
     },
   });
 
-  /* â”€â”€ Brands marquee pause-on-hover already in CSS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+  /* ── Brands marquee pause-on-hover already in CSS ────────── */
 
-  /* â”€â”€ Contact form reveal â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+  /* ── Contact form reveal ──────────────────────────────────── */
   gsap.from('.contact-form', {
     x:       -50,
     opacity: 0,
@@ -702,7 +702,7 @@ document.addEventListener('DOMContentLoaded', () => {
     },
   });
 
-  /* â”€â”€ Section heading clip reveal â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+  /* ── Section heading clip reveal ─────────────────────────── */
   document.querySelectorAll('.section-heading').forEach(el => {
     gsap.from(el, {
       clipPath: 'inset(0 100% 0 0)',
@@ -717,7 +717,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  /* â”€â”€ Counter section entrance â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+  /* ── Counter section entrance ─────────────────────────────── */
   gsap.from('.counters-grid', {
     opacity:  0,
     y:        40,
@@ -730,7 +730,7 @@ document.addEventListener('DOMContentLoaded', () => {
     },
   });
 
-  /* â”€â”€ Testimonial section entrance â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+  /* ── Testimonial section entrance ────────────────────────── */
   gsap.from('.testimonials-carousel', {
     opacity:  0,
     y:        50,
@@ -743,20 +743,20 @@ document.addEventListener('DOMContentLoaded', () => {
     },
   });
 
-  /* â”€â”€ Hero scroll indicator fade on scroll â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+  /* ── Hero scroll indicator fade on scroll ────────────────── */
   ScrollTrigger.create({
     start: 'top -20%',
     onEnter:     () => gsap.to('.hero-scroll-indicator', { opacity: 0, duration: 0.5 }),
     onLeaveBack: () => gsap.to('.hero-scroll-indicator', { opacity: 1, duration: 0.5 }),
   });
 
-  /* â”€â”€ Gold lines entrance â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+  /* ── Gold lines entrance ──────────────────────────────────── */
   gsap.to('.gold-line-top',    { opacity: 0.45, scaleX: 1, duration: 1.2, delay: 2.4, ease: 'power2.out', transformOrigin: 'left center' });
   gsap.to('.gold-line-bottom', { opacity: 0.45, scaleX: 1, duration: 1.2, delay: 2.7, ease: 'power2.out', transformOrigin: 'right center' });
   gsap.to('.gold-line-left',   { opacity: 0.45, scaleY: 1, duration: 1.2, delay: 3.0, ease: 'power2.out', transformOrigin: 'center top' });
   gsap.to('.gold-line-right',  { opacity: 0.45, scaleY: 1, duration: 1.2, delay: 3.3, ease: 'power2.out', transformOrigin: 'center bottom' });
 
-  /* â”€â”€ Footer brand reveal â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+  /* ── Footer brand reveal ──────────────────────────────────── */
   gsap.from('.footer-brand, .footer-col', {
     opacity:  0,
     y:        30,
@@ -770,6 +770,6 @@ document.addEventListener('DOMContentLoaded', () => {
     },
   });
 
-  /* â”€â”€ Refresh ScrollTrigger after fonts load â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+  /* ── Refresh ScrollTrigger after fonts load ───────────────── */
   document.fonts.ready.then(() => ScrollTrigger.refresh());
 });

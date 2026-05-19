@@ -1,16 +1,16 @@
 ﻿/* ============================================================
-   7 FRAMES â€” MAIN JS
+   7 FRAMES — MAIN JS
    Gallery data, hero slideshow, modal, lightbox, cursor, particles
    ============================================================ */
 
 'use strict';
 
-/* â”€â”€ Gallery Data â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* ── Gallery Data ───────────────────────────────────────────── */
 const GALLERIES = {
   wildlife: {
     cat:    'Wildlife',
     title:  'Into the Wild',
-    intro:  'Raw, untamed moments captured in their natural habitat. A visual journey through the wilderness â€” from the forests of Maharashtra to the wild heartland of India.',
+    intro:  'Raw, untamed moments captured in their natural habitat. A visual journey through the wilderness — from the forests of Maharashtra to the wild heartland of India.',
     images: [
       { src: 'assets/images/wildlife/wildlife-1.jpg',  alt: 'Wildlife 01' },
       { src: 'assets/images/wildlife/wildlife-2.jpg',  alt: 'Wildlife 02' },
@@ -32,7 +32,7 @@ const GALLERIES = {
   product: {
     cat:    'Product',
     title:  'Object Perfection',
-    intro:  'Commercial-grade product photography that transforms everyday objects into objects of desire. Studio precision meets creative storytelling â€” crafted for brands that demand excellence.',
+    intro:  'Commercial-grade product photography that transforms everyday objects into objects of desire. Studio precision meets creative storytelling — crafted for brands that demand excellence.',
     images: [
       { src: 'assets/images/product/product-1.jpg',  alt: 'Product 01' },
       { src: 'assets/images/product/product-2.jpg',  alt: 'Product 02' },
@@ -79,7 +79,7 @@ const GALLERIES = {
   automobile: {
     cat:    'Automobile',
     title:  'Speed & Steel',
-    intro:  'Automotive photography that captures the soul of the machine â€” its lines, power, and precision. Where engineering excellence meets visual storytelling.',
+    intro:  'Automotive photography that captures the soul of the machine — its lines, power, and precision. Where engineering excellence meets visual storytelling.',
     images: [
       { src: 'assets/images/automobile/automobile-1.jpg', alt: 'Automobile 01' },
       { src: 'assets/images/automobile/automobile-2.jpg', alt: 'Automobile 02' },
@@ -90,11 +90,11 @@ const GALLERIES = {
   }
 };
 
-/* â”€â”€ Active Gallery State â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* ── Active Gallery State ───────────────────────────────────── */
 let activeGalleryImages = [];
 let lightboxIndex       = 0;
 
-/* â”€â”€ DOM References â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* ── DOM References ─────────────────────────────────────────── */
 const loader         = document.getElementById('loader');
 const galleryModal   = document.getElementById('galleryModal');
 const galleryBackdrop= document.getElementById('galleryModalBackdrop');
@@ -112,7 +112,7 @@ const lightboxCounter= document.getElementById('lightboxCounter');
 const cursorDot      = document.getElementById('cursorDot');
 const cursorRing     = document.getElementById('cursorRing');
 
-/* â”€â”€ Loading Screen â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* ── Loading Screen ─────────────────────────────────────────── */
 function initLoader() {
   const logo    = loader.querySelector('.loader-logo');
   const barFill = loader.querySelector('.loader-bar-fill');
@@ -131,7 +131,7 @@ function initLoader() {
   });
 }
 
-/* â”€â”€ Hero Slideshow â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* ── Hero Slideshow ─────────────────────────────────────────── */
 function initHeroSlideshow() {
   const slides     = document.querySelectorAll('.hero-slide');
   const indicators = document.getElementById('slideIndicators');
@@ -160,7 +160,7 @@ function initHeroSlideshow() {
   timer = setInterval(advance, 5000);
 }
 
-/* â”€â”€ Mouse Glow & Custom Cursor â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* ── Mouse Glow & Custom Cursor ─────────────────────────────── */
 function initCursor() {
   const mouseGlow = document.getElementById('mouseGlow');
   let dotX = 0, dotY = 0, ringX = 0, ringY = 0;
@@ -193,7 +193,7 @@ function initCursor() {
   });
 }
 
-/* â”€â”€ Particle Canvas â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* ── Particle Canvas ────────────────────────────────────────── */
 function initParticles() {
   const canvas = document.getElementById('particleCanvas');
   if (!canvas) return;
@@ -242,7 +242,7 @@ function initParticles() {
   tick();
 }
 
-/* â”€â”€ Navigation â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* ── Navigation ─────────────────────────────────────────────── */
 function initNav() {
   const nav        = document.getElementById('mainNav');
   const hamburger  = document.getElementById('hamburger');
@@ -286,7 +286,7 @@ function initNav() {
   sections.forEach(s => observer.observe(s));
 }
 
-/* â”€â”€ Animated Counters â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* ── Animated Counters ──────────────────────────────────────── */
 function initCounters() {
   const counters = document.querySelectorAll('.counter-number');
   let done = false;
@@ -314,7 +314,7 @@ function initCounters() {
   if (grid) observer.observe(grid);
 }
 
-/* â”€â”€ Testimonial Carousel â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* ── Testimonial Carousel ───────────────────────────────────── */
 function initTestimonials() {
   const track  = document.getElementById('testimonialTrack');
   const cards  = track.querySelectorAll('.testimonial-card');
@@ -342,7 +342,7 @@ function initTestimonials() {
   resetTimer();
 }
 
-/* â”€â”€ Featured Carousel Drag â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* ── Featured Carousel Drag ─────────────────────────────────── */
 function initFeaturedCarousel() {
   const carousel = document.getElementById('featuredCarousel');
   const bar      = document.getElementById('featuredProgressBar');
@@ -371,7 +371,7 @@ function initFeaturedCarousel() {
   }, { passive: true });
 }
 
-/* â”€â”€ Gallery Modal â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* ── Gallery Modal ──────────────────────────────────────────── */
 window.openGallery = function(category) {
   const data = GALLERIES[category];
   if (!data) return;
@@ -429,7 +429,7 @@ document.addEventListener('keydown', e => {
   }
 });
 
-/* â”€â”€ Lightbox â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* ── Lightbox ───────────────────────────────────────────────── */
 function openLightbox(idx) {
   lightboxIndex = idx;
   renderLightbox();
@@ -466,7 +466,7 @@ document.addEventListener('keydown', e => {
   if (e.key === 'ArrowRight') lightboxNext.click();
 });
 
-/* â”€â”€ Touch swipe for lightbox â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* ── Touch swipe for lightbox ───────────────────────────────── */
 let touchStartX = 0;
 lightbox.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
 lightbox.addEventListener('touchend',   e => {
@@ -477,7 +477,7 @@ lightbox.addEventListener('touchend',   e => {
   }
 });
 
-/* â”€â”€ Contact form mailto fallback â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* ── Contact form mailto fallback ───────────────────────────── */
 function initContactForm() {
   const form = document.getElementById('contactForm');
   if (!form) return;
@@ -492,7 +492,7 @@ function initContactForm() {
   });
 }
 
-/* â”€â”€ Smooth anchor scroll â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* ── Smooth anchor scroll ───────────────────────────────────── */
 function initSmoothAnchors() {
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', e => {
@@ -504,7 +504,7 @@ function initSmoothAnchors() {
   });
 }
 
-/* â”€â”€ Boot â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* ── Boot ───────────────────────────────────────────────────── */
 /* -- Portfolio Filters ------------------------------------------------ */
 function initPortfolioFilters() {
   const btns  = document.querySelectorAll('.filter-btn');
