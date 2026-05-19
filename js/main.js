@@ -450,6 +450,14 @@ document.addEventListener('keydown', e => {
   }
 });
 
+// Intercept wheel events inside the modal so Lenis (on window) never sees them.
+// stopPropagation prevents the event reaching Lenis; we manually drive scrollTop.
+galleryModal.addEventListener('wheel', (e) => {
+  e.stopPropagation();
+  e.preventDefault();
+  galleryModal.scrollTop += e.deltaY;
+}, { passive: false });
+
 /* ── Lightbox ───────────────────────────────────────────────── */
 function openLightbox(idx) {
   lightboxIndex = idx;
