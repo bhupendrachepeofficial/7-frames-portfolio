@@ -505,6 +505,28 @@ function initSmoothAnchors() {
 }
 
 /* â”€â”€ Boot â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* -- Portfolio Filters ------------------------------------------------ */
+function initPortfolioFilters() {
+  const btns  = document.querySelectorAll('.filter-btn');
+  const cards = document.querySelectorAll('.portfolio-card[data-category]');
+  if (!btns.length || !cards.length) return;
+
+  btns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      btns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = btn.dataset.filter;
+      cards.forEach(card => {
+        if (filter === 'all' || card.dataset.category === filter) {
+          card.classList.remove('pf-hidden');
+        } else {
+          card.classList.add('pf-hidden');
+        }
+      });
+    });
+  });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   initLoader();
   initHeroSlideshow();
@@ -513,6 +535,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initCounters();
   initTestimonials();
   initFeaturedCarousel();
+  initPortfolioFilters();
   initContactForm();
   initSmoothAnchors();
 

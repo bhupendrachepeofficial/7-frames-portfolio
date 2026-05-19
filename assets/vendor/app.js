@@ -1,4 +1,4 @@
-﻿/* ============================================================
+/* ============================================================
    7 FRAMES â€” MAIN JS
    Gallery data, hero slideshow, modal, lightbox, cursor, particles
    ============================================================ */
@@ -505,6 +505,28 @@ function initSmoothAnchors() {
 }
 
 /* â”€â”€ Boot â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* -- Portfolio Filters ------------------------------------------------ */
+function initPortfolioFilters() {
+  const btns  = document.querySelectorAll('.filter-btn');
+  const cards = document.querySelectorAll('.portfolio-card[data-category]');
+  if (!btns.length || !cards.length) return;
+
+  btns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      btns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = btn.dataset.filter;
+      cards.forEach(card => {
+        if (filter === 'all' || card.dataset.category === filter) {
+          card.classList.remove('pf-hidden');
+        } else {
+          card.classList.add('pf-hidden');
+        }
+      });
+    });
+  });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   initLoader();
   initHeroSlideshow();
@@ -513,6 +535,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initCounters();
   initTestimonials();
   initFeaturedCarousel();
+  initPortfolioFilters();
   initContactForm();
   initSmoothAnchors();
 
@@ -523,18 +546,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 /* ============================================================
-   7 FRAMES — GSAP ANIMATIONS & LENIS SMOOTH SCROLL
+   7 FRAMES â€” GSAP ANIMATIONS & LENIS SMOOTH SCROLL
    ============================================================ */
 
 'use strict';
 
-/* ── Wait for GSAP + Lenis to load ─────────────────────────── */
+/* â”€â”€ Wait for GSAP + Lenis to load â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 document.addEventListener('DOMContentLoaded', () => {
   if (typeof gsap === 'undefined') return;
 
   gsap.registerPlugin(ScrollTrigger);
 
-  /* ── Lenis Smooth Scroll ──────────────────────────────────── */
+  /* â”€â”€ Lenis Smooth Scroll â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
   let lenis;
   if (typeof Lenis !== 'undefined') {
     lenis = new Lenis({
@@ -550,7 +573,7 @@ document.addEventListener('DOMContentLoaded', () => {
     lenis.on('scroll', ScrollTrigger.update);
   }
 
-  /* ── Hero content reveal (after loader) ──────────────────── */
+  /* â”€â”€ Hero content reveal (after loader) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
   const heroTl = gsap.timeline({ delay: 2.0 });
 
   heroTl
@@ -565,7 +588,7 @@ document.addEventListener('DOMContentLoaded', () => {
     .to('.hero-subtitle', { opacity: 1, duration: 0.9, ease: 'power2.out' }, '-=0.6')
     .to('.hero-ctas',     { opacity: 1, duration: 0.9, ease: 'power2.out' }, '-=0.5');
 
-  /* ── Scroll Reveal — generic .reveal-up elements ─────────── */
+  /* â”€â”€ Scroll Reveal â€” generic .reveal-up elements â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
   ScrollTrigger.batch('.reveal-up', {
     start:  'top 88%',
     once:   true,
@@ -593,14 +616,14 @@ document.addEventListener('DOMContentLoaded', () => {
     },
   });
 
-  /* ── Navigation background on scroll ─────────────────────── */
+  /* â”€â”€ Navigation background on scroll â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
   ScrollTrigger.create({
     start:      'top -80',
     onEnter:    () => document.getElementById('mainNav').classList.add('scrolled'),
     onLeaveBack:() => document.getElementById('mainNav').classList.remove('scrolled'),
   });
 
-  /* ── About portrait parallax ──────────────────────────────── */
+  /* â”€â”€ About portrait parallax â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
   gsap.to('.portrait-frame', {
     yPercent: -12,
     ease:     'none',
@@ -612,7 +635,7 @@ document.addEventListener('DOMContentLoaded', () => {
     },
   });
 
-  /* ── Portfolio cards stagger ──────────────────────────────── */
+  /* â”€â”€ Portfolio cards stagger â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
   gsap.from('.portfolio-card', {
     opacity:  0,
     y:        60,
@@ -626,7 +649,7 @@ document.addEventListener('DOMContentLoaded', () => {
     },
   });
 
-  /* ── Service cards stagger ────────────────────────────────── */
+  /* â”€â”€ Service cards stagger â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
   gsap.from('.service-card', {
     opacity:  0,
     y:        50,
@@ -640,7 +663,7 @@ document.addEventListener('DOMContentLoaded', () => {
     },
   });
 
-  /* ── Featured section heading parallax ───────────────────── */
+  /* â”€â”€ Featured section heading parallax â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
   gsap.from('.featured-section .section-heading', {
     x:       -60,
     opacity: 0,
@@ -653,9 +676,9 @@ document.addEventListener('DOMContentLoaded', () => {
     },
   });
 
-  /* ── Brands marquee pause-on-hover already in CSS ────────── */
+  /* â”€â”€ Brands marquee pause-on-hover already in CSS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 
-  /* ── Contact form reveal ──────────────────────────────────── */
+  /* â”€â”€ Contact form reveal â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
   gsap.from('.contact-form', {
     x:       -50,
     opacity: 0,
@@ -679,7 +702,7 @@ document.addEventListener('DOMContentLoaded', () => {
     },
   });
 
-  /* ── Section heading clip reveal ─────────────────────────── */
+  /* â”€â”€ Section heading clip reveal â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
   document.querySelectorAll('.section-heading').forEach(el => {
     gsap.from(el, {
       clipPath: 'inset(0 100% 0 0)',
@@ -694,7 +717,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  /* ── Counter section entrance ─────────────────────────────── */
+  /* â”€â”€ Counter section entrance â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
   gsap.from('.counters-grid', {
     opacity:  0,
     y:        40,
@@ -707,7 +730,7 @@ document.addEventListener('DOMContentLoaded', () => {
     },
   });
 
-  /* ── Testimonial section entrance ────────────────────────── */
+  /* â”€â”€ Testimonial section entrance â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
   gsap.from('.testimonials-carousel', {
     opacity:  0,
     y:        50,
@@ -720,20 +743,20 @@ document.addEventListener('DOMContentLoaded', () => {
     },
   });
 
-  /* ── Hero scroll indicator fade on scroll ────────────────── */
+  /* â”€â”€ Hero scroll indicator fade on scroll â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
   ScrollTrigger.create({
     start: 'top -20%',
     onEnter:     () => gsap.to('.hero-scroll-indicator', { opacity: 0, duration: 0.5 }),
     onLeaveBack: () => gsap.to('.hero-scroll-indicator', { opacity: 1, duration: 0.5 }),
   });
 
-  /* ── Gold lines entrance ──────────────────────────────────── */
+  /* â”€â”€ Gold lines entrance â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
   gsap.to('.gold-line-top',    { opacity: 0.45, scaleX: 1, duration: 1.2, delay: 2.4, ease: 'power2.out', transformOrigin: 'left center' });
   gsap.to('.gold-line-bottom', { opacity: 0.45, scaleX: 1, duration: 1.2, delay: 2.7, ease: 'power2.out', transformOrigin: 'right center' });
   gsap.to('.gold-line-left',   { opacity: 0.45, scaleY: 1, duration: 1.2, delay: 3.0, ease: 'power2.out', transformOrigin: 'center top' });
   gsap.to('.gold-line-right',  { opacity: 0.45, scaleY: 1, duration: 1.2, delay: 3.3, ease: 'power2.out', transformOrigin: 'center bottom' });
 
-  /* ── Footer brand reveal ──────────────────────────────────── */
+  /* â”€â”€ Footer brand reveal â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
   gsap.from('.footer-brand, .footer-col', {
     opacity:  0,
     y:        30,
@@ -747,7 +770,6 @@ document.addEventListener('DOMContentLoaded', () => {
     },
   });
 
-  /* ── Refresh ScrollTrigger after fonts load ───────────────── */
+  /* â”€â”€ Refresh ScrollTrigger after fonts load â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
   document.fonts.ready.then(() => ScrollTrigger.refresh());
 });
-
