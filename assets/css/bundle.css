@@ -62,7 +62,7 @@
   --transition-fast: 0.2s ease;
   --radius:        8px;
   --radius-lg:     16px;
-  --section-pad:   56px;
+  --section-pad:   66px;
   --container-max: 1240px;
 }
 
@@ -103,11 +103,11 @@ input, textarea { font-family: inherit; }
 }
 .section-heading {
   font-family: var(--font-serif);
-  font-size: clamp(28px, 4vw, 48px);
+  font-size: clamp(30px, 4.2vw, 50px);
   font-weight: 700;
   line-height: 1.15;
   color: var(--gold);
-  margin-bottom: 8px;
+  margin-bottom: 10px;
 }
 .section-heading em {
   font-family: var(--font-display);
@@ -116,11 +116,11 @@ input, textarea { font-family: inherit; }
   color: var(--gold-light);
 }
 .section-sub {
-  font-size: 15px;
+  font-size: 16px;
   color: var(--text-secondary);
   max-width: 560px;
-  margin: 0 auto 20px;
-  line-height: 1.7;
+  margin: 0 auto 28px;
+  line-height: 1.75;
 }
 
 /* ── Buttons ────────────────────────────────────────────────── */
@@ -542,13 +542,13 @@ input, textarea { font-family: inherit; }
 }
 
 /* ── About Section ──────────────────────────────────────────── */
-.about-section { padding-top: 88px; }
+.about-section { padding-top: 98px; }
 .about-grid {
   display: grid;
   grid-template-columns: 1fr 380px;
-  gap: 48px;
+  gap: 54px;
   align-items: center;
-  margin-bottom: 32px;
+  margin-bottom: 38px;
 }
 .about-lead {
   font-family: var(--font-serif);
@@ -613,11 +613,11 @@ input, textarea { font-family: inherit; }
   grid-template-columns: repeat(4, 1fr);
   gap: 2px;
   border-top: 1px solid var(--glass-border);
-  padding-top: 20px;
+  padding-top: 26px;
 }
 .counter-item {
   text-align: center;
-  padding: 18px 16px;
+  padding: 22px 18px;
   border-right: 1px solid var(--glass-border);
 }
 .counter-item:last-child { border-right: none; }
@@ -648,7 +648,7 @@ input, textarea { font-family: inherit; }
 }
 .brands-header {
   text-align: center;
-  margin-bottom: 16px;
+  margin-bottom: 22px;
 }
 .brands-badge {
   display: inline-flex;
@@ -713,12 +713,12 @@ input, textarea { font-family: inherit; }
 }
 
 /* ── Portfolio Section ──────────────────────────────────────── */
-.portfolio-section { padding-top: 76px; }
+.portfolio-section { padding-top: 86px; }
 .portfolio-filters {
   display: flex;
   justify-content: center;
   gap: 8px;
-  margin-bottom: 20px;
+  margin-bottom: 32px;
   flex-wrap: wrap;
 }
 .filter-btn {
@@ -744,9 +744,9 @@ input, textarea { font-family: inherit; }
 .portfolio-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: 420px 320px;
-  gap: 12px;
-  margin-top: 16px;
+  grid-template-rows: 430px 330px;
+  gap: 14px;
+  margin-top: 24px;
 }
 .portfolio-card--large {
   grid-row: 1;
@@ -848,8 +848,8 @@ input, textarea { font-family: inherit; }
 
 /* ── Featured Section ───────────────────────────────────────── */
 .featured-section { overflow: hidden; }
-.featured-section .section-heading { margin-bottom: 4px; }
-.featured-carousel-wrap { margin-top: 16px; }
+.featured-section .section-heading { margin-bottom: 6px; }
+.featured-carousel-wrap { margin-top: 20px; }
 .featured-carousel {
   display: flex;
   gap: 20px;
@@ -916,14 +916,14 @@ input, textarea { font-family: inherit; }
 .services-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 14px;
-  margin-top: 20px;
+  gap: 16px;
+  margin-top: 28px;
 }
 .service-card {
   background: var(--glass-bg);
   border: 1px solid var(--glass-border);
   border-radius: var(--radius-lg);
-  padding: 28px 24px;
+  padding: 34px 28px;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   transition: var(--transition);
@@ -980,7 +980,7 @@ input, textarea { font-family: inherit; }
 .testimonials-section { overflow: hidden; }
 .testimonials-carousel {
   position: relative;
-  margin-top: 20px;
+  margin-top: 28px;
   overflow: hidden;
 }
 .testimonial-track {
@@ -993,7 +993,7 @@ input, textarea { font-family: inherit; }
   background: var(--glass-bg);
   border: 1px solid var(--glass-border);
   border-radius: var(--radius-lg);
-  padding: 36px clamp(20px, calc(50% - 320px), 72px);
+  padding: 42px clamp(20px, calc(50% - 320px), 76px);
   text-align: center;
 }
 .testimonial-quote-icon {
@@ -1068,9 +1068,9 @@ input, textarea { font-family: inherit; }
 .contact-grid {
   display: grid;
   grid-template-columns: 1fr 360px;
-  gap: 48px;
+  gap: 56px;
   align-items: start;
-  margin-top: 20px;
+  margin-top: 28px;
 }
 .contact-form { }
 .form-group { margin-bottom: 24px; }
@@ -1171,7 +1171,7 @@ input, textarea { font-family: inherit; }
 
 /* ── Footer ─────────────────────────────────────────────────── */
 .footer { background: var(--bg-primary); }
-.footer-top { padding: 40px 0 24px; }
+.footer-top { padding: 46px 0 28px; }
 .footer-grid {
   display: grid;
   grid-template-columns: 2fr 1fr 1fr 1.5fr;
