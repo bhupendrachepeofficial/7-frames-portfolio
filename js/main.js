@@ -337,19 +337,25 @@ function initTestimonials() {
 
   function resetTimer() {
     clearInterval(autoTimer);
-    autoTimer = setInterval(() => goTo(current + 1), 4500);
+    autoTimer = setInterval(() => {
+      if (current < cards.length - 1) {
+        goTo(current + 1);
+      } else {
+        clearInterval(autoTimer);
+      }
+    }, 4500);
   }
   resetTimer();
 }
 
-/* ── Featured Carousel Drag ─────────────────────────────────── */
+/* ── Featured Carousel Drag + Auto-scroll ───────────────────── */
 function initFeaturedCarousel() {
   const carousel = document.getElementById('featuredCarousel');
   const bar      = document.getElementById('featuredProgressBar');
   if (!carousel) return;
 
+  // Drag to scroll
   let isDown = false, startX, scrollLeft;
-
   carousel.addEventListener('mousedown', e => {
     isDown = true;
     carousel.style.userSelect = 'none';
@@ -364,11 +370,24 @@ function initFeaturedCarousel() {
     carousel.scrollLeft = scrollLeft - walk;
   });
 
+  // Progress bar
   carousel.addEventListener('scroll', () => {
     if (!bar) return;
     const max = carousel.scrollWidth - carousel.clientWidth;
     bar.style.width = max > 0 ? ((carousel.scrollLeft / max) * 100) + '%' : '0%';
   }, { passive: true });
+
+  // Auto-scroll: advance one card every 4 s, loop back to start
+  const cards = carousel.querySelectorAll('.featured-card');
+  if (cards.length < 2) return;
+  let autoIdx = 0;
+  setInterval(() => {
+    autoIdx = (autoIdx + 1) % cards.length;
+    carousel.scrollTo({
+      left: cards[autoIdx].offsetLeft - carousel.offsetLeft,
+      behavior: 'smooth',
+    });
+  }, 4000);
 }
 
 /* ── Gallery Modal ──────────────────────────────────────────── */
@@ -398,6 +417,7 @@ window.openGallery = function(category) {
   galleryBackdrop.classList.add('visible');
   document.body.style.overflow = 'hidden';
   galleryModal.scrollTop = 0;
+  if (window.lenis) window.lenis.stop();
 
   requestAnimationFrame(() => {
     galleryGrid.querySelectorAll('.reveal-fade').forEach((el, i) => {
@@ -418,6 +438,7 @@ function closeGallery() {
   galleryModal.classList.remove('visible');
   galleryBackdrop.classList.remove('visible');
   document.body.style.overflow = '';
+  if (window.lenis) window.lenis.start();
 }
 
 galleryClose.addEventListener('click', closeGallery);
@@ -477,18 +498,26 @@ lightbox.addEventListener('touchend',   e => {
   }
 });
 
-/* ── Contact form mailto fallback ───────────────────────────── */
+/* ── Contact form → WhatsApp ────────────────────────────────── */
 function initContactForm() {
   const form = document.getElementById('contactForm');
   if (!form) return;
   form.addEventListener('submit', e => {
-    const name    = form.querySelector('#name').value;
-    const email   = form.querySelector('#email').value;
-    const subject = form.querySelector('#subject').value || 'Enquiry from 7 Frames Website';
-    const message = form.querySelector('#message').value;
-    const mailto  = `mailto:chepe.salil@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent('Name: ' + name + '\nEmail: ' + email + '\n\n' + message)}`;
-    window.location.href = mailto;
     e.preventDefault();
+    const name    = form.querySelector('#name').value.trim();
+    const email   = form.querySelector('#email').value.trim();
+    const subject = form.querySelector('#subject').value.trim() || 'General Enquiry';
+    const message = form.querySelector('#message').value.trim();
+    const text = [
+      '*Enquiry via 7 Frames Website*',
+      '─────────────────────',
+      '*Name:* ' + name,
+      email    ? '*Email:* ' + email : '',
+      '*Service:* ' + subject,
+      '─────────────────────',
+      message,
+    ].filter(Boolean).join('\n');
+    window.open('https://wa.me/919922928006?text=' + encodeURIComponent(text), '_blank');
   });
 }
 
