@@ -343,7 +343,7 @@ function initTestimonials() {
       } else {
         clearInterval(autoTimer);
       }
-    }, 4500);
+    }, 5000);
   }
   resetTimer();
 }
