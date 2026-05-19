@@ -156,21 +156,6 @@ document.addEventListener('DOMContentLoaded', () => {
     },
   });
 
-  /* ── Section heading clip reveal ─────────────────────────── */
-  document.querySelectorAll('.section-heading').forEach(el => {
-    gsap.from(el, {
-      clipPath: 'inset(0 100% 0 0)',
-      opacity:  0,
-      duration: 1.1,
-      ease:     'power4.out',
-      scrollTrigger: {
-        trigger: el,
-        start:   'top 88%',
-        once:    true,
-      },
-    });
-  });
-
   /* ── Counter section entrance ─────────────────────────────── */
   gsap.from('.counters-grid', {
     opacity:  0,
